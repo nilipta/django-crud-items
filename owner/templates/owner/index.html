@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {{page_name }} </title>
+
+    <style>
+        body{
+            background-color: rgba(167, 156, 209, 0.5); ;
+        }
+        h1 {
+            color:blue;
+            display: flex;
+            justify-content:center
+        }
+        div{
+            padding: 10px, 10 px;
+        }
+        ol{
+        }
+        li {
+            padding: 5px;
+            margin-top: 10px;
+            border: blue 2px solid;
+            background-color: lemonchiffon;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <h1> List of all items</h1>
+
+    {% if items %}
+    <ol>
+    {% for item in items %}
+        <li>
+            {# <!-- <a href="{% url 'merchant:detail' item.id %}">{{item.item_name}}</a> --> #}
+            <div> NAME: {{item.name}}</div>
+            <div>PRICE: {{item.price}}</div>
+        </li>
+    {% endfor %}
+    </ol>
+    {% else %}
+    <h1>No items in shop</h1>
+    {% endif %}
+
+</body>
+</html>
