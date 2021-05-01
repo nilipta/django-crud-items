@@ -120,8 +120,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #cutom settings
-FILE_ROOT = os.path.join(BASE_DIR, "files")
-FILE_URL = "/files/"
+# Media Files uploaded by user to be stored here
+MEDIA_ROOT = os.path.join(BASE_DIR, "static")
+# MEDIA_URL = "/files/"
