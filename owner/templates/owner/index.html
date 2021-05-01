@@ -8,7 +8,7 @@
 
     <style>
         body{
-            background-color: rgba(167, 156, 209, 0.5); ;
+            background-color: rgba(156, 209, 196, 0.5); ;
         }
         h1 {
             color:blue;
@@ -19,33 +19,52 @@
             padding: 10px, 10 px;
         }
         ol{
+            box-shadow: 10px 10px;
         }
         li {
             padding: 5px;
-            margin-top: 10px;
+            margin-top: 20px;
             border: blue 2px solid;
+            border-radius: 10px;
             background-color: lemonchiffon;
+            box-shadow: 3px 8px green;
         }
+
+        .product-image{
+            width: 100px;
+            height: 100px;
+            padding-left: 50px;
+        }
+
     </style>
 </head>
 <body>
-
-    
-    <h1> List of all items</h1>
+    <nav style="display: inline; ">
+        <h1> List of all items</h1>
+        <button> Add new </button>
+    </nav>
 
     {% if items %}
-    <ol>
+    <ul>
     {% for item in items %}
-        <li>
-            {# <!-- <a href="{% url 'merchant:detail' item.id %}">{{item.item_name}}</a> --> #}
-            <div> NAME: {{item.name}}</div>
-            <div>PRICE: {{item.price}}</div>
-        </li>
+        {% if item.visibleToCostumer %}
+            <li>
+                {# <!-- <a href="{% url 'merchant:detail' item.id %}">{{item.item_name}}</a> --> #}
+                <div>ID: {{item.id}}</div>
+                <div>NAME: {{item.name}}</div>
+                <div>PRICE: {{item.price}}</div>
+                <div>TIMESTAMP: {{item.timeStamp}}</div>
+                
+                {% load static %}
+                <img src="{% static item.item_image %}" alt="My image" class="product-image">
+            </li>
+        {% endif %}
+        
     {% endfor %}
-    </ol>
+    </ul>
     {% else %}
     <h1>No items in shop</h1>
     {% endif %}
 
 </body>
-</html>
+</html>̥̥̥
