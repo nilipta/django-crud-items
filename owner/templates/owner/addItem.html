@@ -5,13 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adding item page</title>
+
+    <style></style>
 </head>
 <body>
 
-    
-
-
-
+    <form action="add-item" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
 
 </body>
 </html>
