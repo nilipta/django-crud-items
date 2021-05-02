@@ -7,7 +7,7 @@ class Item(models.Model):
     price=models.IntegerField(verbose_name="Current base MRP")
     visibleToCostumer= models.BooleanField(verbose_name="should costumer see or not")
     profitPercentage=models.FloatField("Profit ratio")
-    item_image=models.ImageField(upload_to="images/")
+    item_image=models.ImageField(upload_to="images/", null=True, blank=True) #for only becoz its saying field is required after form submit
 
 
     def __str__(self):

@@ -41,7 +41,8 @@
 <body>
     <nav style="display: inline; ">
         <h1> List of all items</h1>
-        <button> Add new </button>
+
+        <button> <a href="{% url 'owner:add-item'%}"> Add new </a>  </button>
     </nav>
 
     {% if items %}

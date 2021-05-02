@@ -6,6 +6,6 @@ from .views import Display, AddFormClass
 
 
 urlpatterns = [
-    path('', Display.homeDisplay),
-    path('add-item', AddFormClass.get_name),
+    path('', Display.homeDisplay, name="owner-home"),
+    path('add-item', AddFormClass.get_name, name="add-item"),
 ]
