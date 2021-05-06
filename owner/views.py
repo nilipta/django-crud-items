@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from django.db import models
 from django.forms import ModelForm
+from django.urls import reverse
 
 from .models import Item
 
@@ -49,3 +50,9 @@ class AddFormClass:
             form = ItemForm()
 
         return render(request, 'owner/addItem.html', {'form': form})
+
+class DeleteItemClass:
+    def deleteHandler(request, pk): # this pk is the argument from index.htm & urls.py
+        toBeDeletedItem = Item.objects.get(pk=pk)
+        toBeDeletedItem.delete()
+        return HttpResponseRedirect(reverse('owner:owner-home'))

@@ -36,6 +36,19 @@
             padding-left: 50px;
         }
 
+        .container{
+            display:list-item
+        }
+        .container.left-portion{
+            width: 500px;
+        }
+        .right-portion{
+            float: right;
+            position: relative;
+            left: -50px;
+            top: 20px;
+        }
+
     </style>
 </head>
 <body>
@@ -49,16 +62,24 @@
     <ul>
     {% for item in items %}
         {% if item.visibleToCostumer %}
-            <li>
-                {# <!-- <a href="{% url 'merchant:detail' item.id %}">{{item.item_name}}</a> --> #}
-                <div>ID: {{item.id}}</div>
-                <div>NAME: {{item.name}}</div>
-                <div>PRICE: {{item.price}}</div>
-                <div>TIMESTAMP: {{item.timeStamp}}</div>
-                
-                {% load static %}
-                <img src="{% static item.item_image %}" alt="My image" class="product-image">
-            </li>
+            <div class="container">
+                <div class="right-portion">
+                    <button style="background-color: yellow;">EDIT</button>
+                    <button style="background-color: crimson;"> <a href="{% url 'owner:delete-item' pk=item.id %}"> DELETE </a></button>
+                </div>
+                <div class="left-portion">
+                    <li>
+                        {# <!-- <a href="{% url 'merchant:detail' item.id %}">{{item.item_name}}</a> --> #}
+                        <div>ID: {{item.id}}</div>
+                        <div>NAME: {{item.name}}</div>
+                        <div>PRICE: {{item.price}}</div>
+                        <div>TIMESTAMP: {{item.timeStamp}}</div>
+                        
+                        {% load static %}
+                        <img src="{% static item.item_image %}" alt="My image" class="product-image">
+                    </li>
+                </div>
+            </div>
         {% endif %}
         
     {% endfor %}
