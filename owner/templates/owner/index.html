@@ -64,12 +64,11 @@
         {% if item.visibleToCostumer %}
             <div class="container">
                 <div class="right-portion">
-                    <button style="background-color: yellow;">EDIT</button>
+                    <button style="background-color: yellow;"> <a href="{% url 'owner:edit-item' item_id=item.id %}"> EDIT </a> </button>
                     <button style="background-color: crimson;"> <a href="{% url 'owner:delete-item' pk=item.id %}"> DELETE </a></button>
                 </div>
                 <div class="left-portion">
                     <li>
-                        {# <!-- <a href="{% url 'merchant:detail' item.id %}">{{item.item_name}}</a> --> #}
                         <div>ID: {{item.id}}</div>
                         <div>NAME: {{item.name}}</div>
                         <div>PRICE: {{item.price}}</div>

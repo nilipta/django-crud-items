@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item details page</title>
+    <style>
+        label {
+            color:blue;
+            display: block;
+        }
+        img{
+            width: 200px;
+            max-height: 20%;
+        }
+        input {
+            display: inline;
+            position: relative;
+            width: 100%;
+        }
+        input, select {
+            border: 1px solid rgb(248, 19, 172);
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        p,label,input {
+            padding: 5px;
+            margin: 2px 0 0 10%;
+        }
+        
+        input[type=submit] {
+            width: 50%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0 0 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-style{
+            width: 100%;
+            background-color: rgb(250, 198, 198);
+            display: flex;
+            justify-content: left;
+        }
+
+    </style>
+</head>
+<body>
+    {% load static%}
+    <img src="{% static itemImagePath %}" alt="My image" class="product-image">
+
+    <div class="form-style">
+        <form action="edit-item" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit"> </button>
+        </form>
+    </div>
+    
+    <button> <a href="{% url 'owner:owner-home'%}"> BACK to Home </a> </button>
+
+</body>
+</html>

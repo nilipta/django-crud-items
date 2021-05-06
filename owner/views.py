@@ -56,3 +56,19 @@ class DeleteItemClass:
         toBeDeletedItem = Item.objects.get(pk=pk)
         toBeDeletedItem.delete()
         return HttpResponseRedirect(reverse('owner:owner-home'))
+
+
+class EditFormClass:
+    def editHandler(request, item_id):
+        toBeEditedItem = Item.objects.get(pk=item_id)
+        itemImagePath = toBeEditedItem.item_image   #only added to show image in UI
+
+        if request.method == 'POST':
+            form = ItemForm(request.POST, request.FILES, instance=toBeEditedItem)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/owner')
+        else:
+            form = ItemForm(instance=toBeEditedItem)
+
+        return render(request, 'owner/editItem.html', {'form': form, 'itemImagePath':itemImagePath})
