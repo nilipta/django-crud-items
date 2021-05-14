@@ -30,9 +30,11 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# 'django.contrib.auth', => core of the authentication framework 
+# 'django.contrib.contenttypes' => allows permissions to be associated with models
 INSTALLED_APPS = [
     'owner.apps.OwnerConfig',
+    'welcome.apps.WelcomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

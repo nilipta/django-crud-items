@@ -1,15 +1,13 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> {{page_name}} </title>
-
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Auth section</title>
 </head>
 
 <body>
@@ -41,38 +39,47 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row">
-            {% if items %}
-            {% for item in items %}
-            <ul class="item-style">
-                {% if item.visibleToCostumer %}
+    <p class="description description-second">Signup using email & password</p>
+    <form action="{%  url 'welcome:signup'  %}"  method="POST">
+        {% csrf_token %}
+        <label class="label.input" for="">
+            <i class="fas fa-user icon-modify"></i>
+            <input type="text" name="name"  placeholder="Name" required>
+        </label>
 
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static item.item_image %}" class="card-img-top" alt="product image">
-                    <div class="card-body">
-                        <h5 class="card-title"> {{item.name}} </h5>
-                        <p class="card-text"> ID: {{item.id}} </p>
-                        <p class="card-text"> PRICE: {{item.price}} </p>
-                        <p class="card-text"> TIMESTAMP: {{item.timeStamp}} </p>
-                        <div class="right-portion item-style">
-                            <button class="btn" style="background-color: yellow;"> <a
-                                    href="{% url 'owner:edit-item' item_id=item.id %}"> EDIT </a> </button>
-                            <button class="btn" style="background-color: crimson;"> <a
-                                    href="{% url 'owner:delete-item' pk=item.id %}"> DELETE </a></button>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-            </ul>
-            {% endfor %}
-            {% else %}
-            <h1>No items in shop</h1>
-            {% endif %}
-        </div>
-    </div>
+        <label class="label.input" for="">
+            <i class="fas fa-envelope icon-modify"></i>
+            <input type="email" name="email" placeholder="Email" required>
+        </label>
 
+        <label class="label.input" for="">
+            <i class="fas fa-lock icon-modify"></i>
+            <input type="password" name="password" placeholder="password" id="password" required>
+        </label>     
+
+        <label class="label.input" for="">
+            <i class="fas fa-lock icon-modify"></i>
+            <input type="password" name="password2" placeholder="Confirmar password" id="confirm_password" required>
+        </label>     
+        <button class="btn btn-second">sign up</button>
+    </form>
+
+
+
+    <p class="description description-second">or use your email account</p>
+    <form class="formulario" action="{% url 'welcome:login'  %}" method="POST">
+        {% csrf_token %}
+        <label class="label.input" for="">
+            <i class="fas fa-envelope icon-modify"></i>
+            <input type="email" name="email" placeholder="Email">
+        </label>
+        <label class="label.input" for="">
+            <i class="fas fa-lock icon-modify"></i>
+            <input type="password" name="password" placeholder="Senha">
+        </label>
+        <button class="btn btn-second">Sign in</button>
+    </form>
 
 </body>
 
-</html>̥̥̥
+</html>
