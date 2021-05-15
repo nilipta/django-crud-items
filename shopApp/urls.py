@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('owner/', include(("owner.urls", 'owner'), namespace='owner')),
     path('auth/', include(("welcome.urls", 'welcome'), namespace='auth')),
+    path('', include('welcome.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.MEDIA_ROOT)

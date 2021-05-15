@@ -4,7 +4,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from django.db import models
 from django.forms import ModelForm
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import DeleteView
 
 from .models import Item
 
@@ -14,7 +17,8 @@ class Display(View):
     def homeDisplay(request):
         context= {
             'page_name': "Home page",
-            "items": Item.objects.all()
+            "items": Item.objects.all(),
+            "logged_in_username": request.user.username 
         }
         return render(request, 'owner/index.html', context)
 
@@ -56,6 +60,12 @@ class DeleteItemClass:
         toBeDeletedItem = Item.objects.get(pk=pk)
         toBeDeletedItem.delete()
         return HttpResponseRedirect(reverse('owner:owner-home'))
+
+# automatically loads item_confirm_delete.html as it is a edfault template style
+class DeleteView(LoginRequiredMixin, DeleteView):
+    model = Item
+    context_object_name = 'item'
+    success_url = reverse_lazy('owner:owner-home')
 
 
 class EditFormClass:

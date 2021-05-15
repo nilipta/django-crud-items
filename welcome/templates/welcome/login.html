@@ -1,43 +1,6 @@
+{% extends 'owner/main.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <title>Auth section</title>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
-                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="#">Navbar</a>
-            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo03">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'owner:add-item'%}"> Add new </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    <a href="/auth"><img src="{% static 'images/login.png' %}" alt="login image" class="img-thumbnail" style="height: 37px; max-width: 40px;"> </a>
-                </form>
-            </div>
-        </div>
-    </nav>
+{% block content %}
 
     <p class="description description-second">Signup using email & password</p>
     <form action="{%  url 'welcome:signup'  %}"  method="POST">
@@ -77,9 +40,7 @@
             <i class="fas fa-lock icon-modify"></i>
             <input type="password" name="password" placeholder="Senha">
         </label>
-        <button class="btn btn-second">Sign in</button>
+        <button class="btn btn-primary">Sign in</button>
     </form>
 
-</body>
-
-</html>
+    {% endblock content %}
