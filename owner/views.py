@@ -6,7 +6,9 @@ from django.db import models
 from django.forms import ModelForm
 from django.urls import reverse, reverse_lazy
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+# from django.contrib.auth.decorators import login_required, permission_required
+# from django.utils.decorators import method_decorator
 from django.views.generic.edit import DeleteView
 
 from .models import Item
@@ -20,6 +22,7 @@ class Display(View):
             "items": Item.objects.all(),
             "logged_in_username": request.user.username 
         }
+        print(request.user.has_perm)
         return render(request, 'owner/index.html', context)
 
 
@@ -62,8 +65,11 @@ class DeleteItemClass:
         return HttpResponseRedirect(reverse('owner:owner-home'))
 
 # automatically loads item_confirm_delete.html as it is a edfault template style
-class DeleteView(LoginRequiredMixin, DeleteView):
+# @permission_required('owner.can_delete_item')
+# @method_decorator(permission_required, name='owner.can_delete_item')
+class DeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Item
+    permission_required = 'owner.can_delete_item'
     context_object_name = 'item'
     success_url = reverse_lazy('owner:owner-home')
 

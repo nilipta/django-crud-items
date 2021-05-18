@@ -16,5 +16,13 @@ class Item(models.Model):
     def __str__(self):
         return self.name 
     
-
+    '''
+    random permission here,
+    it will show in admin user page,
+    add to allowed user section to allow this permission for that perticular user
+    if view setting will match then it will open the link or forbidden will display
+    '''
+    class Meta:
+        permissions = (('can_read_on_sunday', 'Can read only on sunday of the month'), ("can_manage_privilege", "Can manage privileges"), ('can_read_privilege_detail', 'Can read privilege detail'), )
+    
 

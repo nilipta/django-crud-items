@@ -19,10 +19,10 @@
                         <div class="right-portion item-style">
                             <button class="btn" style="background-color: yellow;"> <a
                                     href="{% url 'owner:edit-item' item_id=item.id %}"> EDIT </a> </button>
-                            {% if logged_in_username == 'nilipta' %}
+                            {#% if logged_in_username == 'nilipta' %#}
                             <button class="btn" style="background-color: crimson;"> <a
                                     href="{% url 'owner:delete-item' pk=item.id %}"> DELETE </a></button>
-                            {% endif %}
+                            {#% endif %#}
                         </div>
                     </div>
                 </div>
